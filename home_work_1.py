@@ -6,6 +6,8 @@ Count odd and even numbers.  Count odd and even digits of the whole number.
 Sum of 3 modified
 """
 
+from random import randint
+
 
 def find_max_number() -> int:
     print('Enter some numbers...\nWhen you are ready type "done"')
@@ -26,25 +28,33 @@ def find_max_number() -> int:
     return max_number
 
 
-def odd_or_even_numbers():
-    num = input('Enter a number:')
-    odd, even, other = '', '', ''
-    for i in num:
-        if i.isdigit():
-            if int(i) % 2 == 0:
-                odd += i
-            else:
-                even += i
+def odd_or_even_numbers(num):
+    odd, even = 0, 0
+    left = num // 10
+    right = num % 10
+    if right:
+        if right % 2 == 0:
+            even = 1
         else:
-            other += i
-    print(f"Odd:\t{odd}\nEven:\t{even}\n¯\_(ツ)_/¯ {other}")
+            odd = 1
+    if left != 0:
+        temp = odd_or_even_numbers(left)
+        odd += temp[0]
+        even += temp[1]
+    return odd, even
 
 
-def digit_number(num):
-    if num // 10 == 0:
-        return num
+def count_even_and_odd(num):
+    # print(f"Number is '{num}'")
+    odd, even = odd_or_even_numbers(num)
+    print(f"Odd:\t{odd}\nEven:\t{even}")
+
+
+def digit_number(number):
+    if number // 10 == 0:
+        return number
     else:
-        return num % 10 + digit_number(num // 10)
+        return number % 10 + digit_number(number // 10)
 
 
 def enter_a_number() -> int:
@@ -57,10 +67,16 @@ def enter_a_number() -> int:
     return number
 
 
+def get_random_number(start=0, end=10000):
+    return randint(start, end)
+
+
 if __name__ == '__main__':
+    num = get_random_number()
+    print(f"Random integer: '{num}'")
     print("---largest number from a input---")
     print(find_max_number())
     print("---count odd and even numbers---")
-    odd_or_even_numbers()
+    count_even_and_odd(num)
     print("---sum of 3 modified---")
-    print(digit_number(enter_a_number()))
+    print(digit_number(num))
