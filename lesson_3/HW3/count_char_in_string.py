@@ -14,7 +14,6 @@ def count_car_in_string_for(string, letter, letter_case_matters=True):
             count += 1
     return count
 
-
 def count_car_in_string_list_comprehensions(string, letter, letter_case_matters=True):
     if letter_case_matters:
         return sum(tuple(1 if i == letter else 0 for i in string))
