@@ -24,9 +24,9 @@ def count_car_in_string_list_comprehensions(string, letter, letter_case_matters=
 def count_car_in_string_list_counter(string, letter, letter_case_matters=True):
     if letter_case_matters:
         count = Counter(string)
-        return count['e']
+        return count[letter]
     count = Counter(string.lower())
-    return count['e']
+    return count[letter]
 
 
 if __name__ == '__main__':
