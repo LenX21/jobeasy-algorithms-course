@@ -9,7 +9,6 @@
 import random
 import arithmetical_mean
 import duplicates
-import homework_5
 import sum_of_odd_numbers
 import two_lowest_elements
 
