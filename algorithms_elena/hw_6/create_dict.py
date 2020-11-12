@@ -37,7 +37,8 @@ def create_dict_way2_ext(*lists):
     return dict_none
 
 
-list_all = ([1, 2, 3, 4], ['a', 'b', 'c'])
-print(create_dict_way2_ext(*list_all))
-print(create_dict_way1(*list_all))
-print(create_dict_way2(*list_all))
+if __name__ == "__main__":
+    list_all = ([1, 2, 3, 4], ['a', 'b', 'c'])
+    print(create_dict_way2_ext(*list_all))
+    print(create_dict_way1(*list_all))
+    print(create_dict_way2(*list_all))
