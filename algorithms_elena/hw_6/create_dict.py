@@ -26,17 +26,22 @@ def create_dict_way2(arr1, arr2):
 def create_dict_way2_ext(*lists):
     def g(lists):
         for item in lists:
-            if item:
-                yield lists
+            yield item
         while True:
             yield None
-
-    gen = [g(l) for l in lists]
+    # unlimited amount of lists
+    # gen = [g(l) for l in lists]
+    lst = {}
+    gen_k = g(lists[0])
+    gen_v = g(lists[1])
     for _ in range(max(map(len, lists))):
-        print(tuple(next(g) for g in gen))
+        # unlimited amount of lists
+        # yield tuple(next(g) for g in gen)
+        lst[next(gen_k)] = next(gen_v)
+    return lst
 
 
 list_all = ([1, 2, 3, 4], ['a', 'b', 'c'])
-create_dict_way2_ext(list_all)
+print(create_dict_way2_ext(*list_all))
 print(create_dict_way1(*list_all))
 print(create_dict_way2(*list_all))
