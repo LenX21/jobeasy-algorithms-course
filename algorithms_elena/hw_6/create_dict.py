@@ -26,10 +26,10 @@ def create_dict_way2(arr1, arr2):
 def create_dict_way2_ext(*lists):
     def g(lists):
         for item in lists:
-            while True:
+            if item:
                 yield lists
-            else:
-                yield None
+            yield None
+
     gen = [g(l) for l in lists]
     for _ in range(max(map(len, lists))):
         print(tuple(x for x in next(gen)))
