@@ -10,7 +10,8 @@
 # Way 2: Use zip_longest python module
 # Way 2 extended: Use zip_longest approach. Return None till it requested
 import itertools
-
+import timeit
+import inspect
 
 def create_dict_way1(arr1, arr2):
     joined_dict = {k: None for k in arr1}
@@ -37,8 +38,23 @@ def create_dict_way2_ext(*lists):
     return dict_none
 
 
+def time_it(func, prams):
+    stp = inspect.getsource(func)
+    name = func.__name__
+    stmt = f'{name}({prams})'
+    print("{:60} : {}".format(
+        stmt,
+        timeit.timeit(setup=stp, stmt=stmt, number=10000)))
+
+
 if __name__ == "__main__":
     list_all = ([1, 2, 3, 4], ['a', 'b', 'c'])
     print(create_dict_way2_ext(*list_all))
     print(create_dict_way1(*list_all))
-    print(create_dict_way2(*list_all))
+    print(create_dict_way2_ext(*list_all))
+    print(' ------------ Time it ------------------')
+    list_all_str = ", ".join((repr(x) for x in list_all))
+    time_it(create_dict_way1, list_all_str)
+    time_it(create_dict_way2, list_all_str)
+    time_it(create_dict_way2_ext, list_all_str)
+
