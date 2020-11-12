@@ -28,11 +28,12 @@ def create_dict_way2_ext(*lists):
         for item in lists:
             if item:
                 yield lists
+        while True:
             yield None
 
     gen = [g(l) for l in lists]
     for _ in range(max(map(len, lists))):
-        print(tuple(x for x in next(gen)))
+        print(tuple(next(g) for g in gen))
 
 
 list_all = ([1, 2, 3, 4], ['a', 'b', 'c'])
